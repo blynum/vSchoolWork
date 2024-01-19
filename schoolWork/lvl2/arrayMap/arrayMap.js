@@ -2,8 +2,8 @@
 
 let numbers = [2, 5, 100];
 
-let doubleNumbers = numbers.map(function (number) {
-  return number * 2;
+let doubleNumbers = numbers.map(function (num) {
+  return num * 2;
 });
 
 console.log(doubleNumbers); // [4, 10, 200]
@@ -18,7 +18,7 @@ console.log(doubleNumbers); // [4, 10, 200]
 function doubleNumbers2(arr) {
   return arr.map((num) => num * 2);
 }
-
+//Instead of creating a variable first, I've put the information in the console
 console.log(doubleNumbers2([2, 5, 100])); // [4, 10, 200]
 
 // const doubleNumbers = (arr) => {
@@ -29,8 +29,8 @@ console.log(doubleNumbers2([2, 5, 100])); // [4, 10, 200]
 
 let arrayNumbers = [2, 5, 100];
 
-let stringItUp = arrayNumbers.map(function (arrayNumber) {
-  return arrayNumber + "";
+let stringItUp = arrayNumbers.map(function (arrayNum) {
+  return arrayNum + "";
 });
 
 console.log(stringItUp); // ["2", "5", "100"]
@@ -42,7 +42,7 @@ function capitalizeNames(names) {
     return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   });
 }
-
+//These names are in an object?
 console.log(capitalizeNames(["john", "JACOB", "jinGleHeimer", "schmidt"])); // ["John", "Jacob", "Jingleheimer", "Schmidt"]
 
 // 4) Make an array of strings of the names**
@@ -56,7 +56,7 @@ console.log(capitalizeNames(["john", "JACOB", "jinGleHeimer", "schmidt"])); // [
 const namesOnly = (arr) => {
   return arr.map((name) => name.name);
 };
-
+//These names are in an object called namesOnly
 console.log(
   namesOnly([
     {

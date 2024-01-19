@@ -15,17 +15,17 @@ form.addEventListener("submit", (event) => {
   }
   alert(
     "First Name: " +
-      firstName +
-      "\nLast Name: " +
-      lastName +
-      "\nAge: " +
-      age +
-      "\nGender: " +
-      gender +
-      "Desired Location: " +
-      city +
-      "\nDiet Restriction: " +
-      checkedDiet
+    firstName +
+    "\nLast Name: " +
+    lastName +
+    "\nAge: " +
+    age +
+    "\nGender: " +
+    gender +
+    "\nDesired Location: " +
+    city +
+    "\nDiet Restriction: " +
+    checkedDiet
   );
   //   console.log(city);
 });

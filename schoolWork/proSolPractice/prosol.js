@@ -87,5 +87,45 @@ console.log(getSecondHighest([4, 6, 2, 43, 3, 9])); // => 9
 console.log(getSecondHighest([4, 100, 2, 43, 3, 9])); // => 43
 
 
+/* "1. Write a function called `largestNumber` that takes 3 numbers and returns the largest number. Test with the following: */
 
+function largestNumber2(num1, num2, num3) {
+  let arr = [num1, num2, num3];
+  let maxNum = num1;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > maxNum) {
+      maxNum = arr[i]
+    }
+  }
+  return maxNum
+}
+
+console.log(largestNumber2(3, 8, 9))
+console.log(largestNumber2(25, -10, 10))
+
+function findLargestNumber2(num1, num2, num3) {
+  return Math.max(num1, num2, num3)
+}
+
+console.log(findLargestNumber2(3, 8, 12))
+console.log(findLargestNumber2(25, -10, 15))
+
+
+function largestNumber3(num1, num2, num3) {
+  let maxNum = num1;
+
+  if (maxNum < num2) {
+    maxNum = num2
+  }
+  if (maxNum = num3) {
+    maxNum = num3
+  }
+  return maxNum
+}
+
+
+
+console.log(findLargestNumber2(3, 60, 12))
+console.log(findLargestNumber2(25, 100, 15))
 

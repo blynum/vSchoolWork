@@ -82,3 +82,21 @@ console.log(
 // =>
 // [ { name: 'Angelina Jolie', age: 80 },
 //  { name: 'Bob Ziroll', age: 100 } ]
+
+
+function movieGenre(arr) {
+  return arr.filter(function (item) {
+    if (item.genre === "horror") {
+      return item;
+    }
+  })
+}
+
+console.log(
+  movieGenre([
+    { name: "movie1", genre: "horror" },
+    { name: "movie2", genre: "action" },
+    { name: "movie3", genre: "action" },
+    { name: "movie4", genre: "fantasy" }
+  ])
+)

@@ -2,11 +2,11 @@
 
 function sum(x, y) {
   if (typeof x === "string" || typeof y === "string") {
-    throw "Input should a number";
+    throw "Input should be a number";
   }
   return x + y;
 }
-// console.log(sum(2, "1"));
+console.log(sum(2, 1));
 
 // 1b) Call the `sum` function inside a `try` block using `"1"` and `"2"` as arguments. Use `console.log` within a `catch` block to inform the user of the error.
 
@@ -29,7 +29,7 @@ function login(username, password) {
     console.log("login successful");
   }
 }
-// console.log(login("samm", "123abc"));
+
 
 // 2b) Call the `login` function within a `try` block. In one instance use the correct credentials, and in another use incorrect ones. Make sure you see the appropriate message!
 
@@ -38,3 +38,6 @@ try {
 } catch (err) {
   console.error(err);
 }
+
+//console.log(login("samm", "123abc"));
+console.log(login("sam", "123abc"));
