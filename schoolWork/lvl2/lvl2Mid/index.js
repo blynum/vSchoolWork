@@ -28,3 +28,23 @@ let convertToUppercase = strings.map(strings => strings.charAt(0).toUpperCase() 
 
 
 console.log(convertToUppercase)
+
+// Write a function that takes an array of numbers and returns a new array containing only the even numbers.
+const newNumbers = [1, 2, 3, 4, 5, 6];
+
+function filterEvenNumbers(nums) {
+    return nums.filter(function (num) {
+        return num % 2 === 0
+    }
+    )
+}
+
+
+console.log(filterEvenNumbers(newNumbers));  // Output: [2, 4, 6]
+
+
+//Wrtie a function that takes the base and height of a triangle and return its area
+function triArea(base, height) {
+    return base * height / 2
+}
+console.log(triArea(10, 10))

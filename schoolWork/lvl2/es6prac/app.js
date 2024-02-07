@@ -17,7 +17,7 @@ function runForLoop(pets) {
     pet.name = name;
     petObjects.push(pet);
   }
-  console.log("man name: ", name);
+  console.log("owner name: ", name);
   return petObjects;
 }
 

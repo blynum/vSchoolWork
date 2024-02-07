@@ -132,6 +132,21 @@ img {
   background-color: #e4ede7;
   grid-column: 3/4;
 }
+.art_title
+{
+ font-family: myJFont;
+ font-size: larger;
+}
+
+.by {
+  font-style: italic;
+  text-transform: lowercase;
+  color: #b3cdbd;
+}
+
+.author_name{
+  font-family: myLFont;
+}
 .links {
   background-color: #b3cdbd;
   background-image: url(http://www.csszengarden.com/214/contours-opaque.png),
