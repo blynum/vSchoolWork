@@ -18,7 +18,7 @@ function listData(data) {
         h3.textContent = data[i].description
         document.getElementById('todo-list').appendChild(h3)
         // maybe putting an if statement for image if image url is entered?
-        const image = document.createElement('img')
+        const image = document.createElement('img');
         image.src = data[i].imgUrl
         image.style.width = "300px"
         image.style.height = "300px"
@@ -66,6 +66,8 @@ function listData(data) {
                 })
         })
 
+
+
         deleteButton.addEventListener("click", e => {
             axios.delete("https://api.vschool.io/belita/todo/" + data[i]._id)
                 .then(response => {
@@ -84,14 +86,14 @@ function clearList() {
 }
 getData()
 // Part 2 - POST
-const todoForm = document["todo-form"]
+const todoForm = document.getElementById("todo-form");
 todoForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const newTodo = {
         title: todoForm.title.value,
         price: todoForm.price.value,
         description: todoForm.description.value,
-        imgUrl: todoForm.imgURL.value,
+        imgUrl: todoForm.imgUrl.value,
         // completed: todoForm.checkbox.value
     };
     axios
