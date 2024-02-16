@@ -170,3 +170,23 @@ function listData(data) {
 
     }
 }
+
+
+
+//Checked Box 
+checkbox.addEventListener('change', e => {
+    const isCompleted = checkbox.checked;
+    axios.put("https://api.vschool.io/belita/todo/" + data[i]._id, { completed: true })
+        .then(response => {
+            {
+                if (checkbox.checked) {
+                    h1.style.textDecoration = "line-through"
+                } else {
+                    h1.style.textDecoration = "none"
+                    axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: false })
+                        .then(res => getData())
+                        .catch(err => console.log(err))
+                }
+            }
+        })
+})

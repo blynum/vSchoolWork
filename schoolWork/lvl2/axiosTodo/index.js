@@ -35,10 +35,19 @@ function listData(data) {
         image.style.borderRadius = "5px"; // Optional: Round the corners of the image
         itemContainer.appendChild(image);
 
+
         const checkboxContainer = document.createElement("div");
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = data[i]._id;
+        checkbox.checked = data[i].completed; // Set the checkbox based on the item's completed status
+
+        if (data[i].completed) {
+            h1.style.textDecoration = "line-through";
+        } else {
+            h1.style.textDecoration = "none";
+        }
+
         const label = document.createElement("label");
         label.htmlFor = data[i]._id;
         label.textContent = " Completed";
@@ -55,20 +64,17 @@ function listData(data) {
 
 
         checkbox.addEventListener('change', e => {
-            axios.put("https://api.vschool.io/belita/todo/" + data[i]._id, { completed: true })
+            const isCompleted = checkbox.checked;
+            axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: isCompleted })
                 .then(response => {
-                    {
-                        if (checkbox.checked) {
-                            h1.style.textDecoration = "line-through"
-                        } else {
-                            h1.style.textDecoration = "none"
-                            axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: false })
-                                .then(res => getData())
-                                .catch(err => console.log(err))
-                        }
-                    }
+                    h1.style.textDecoration = isCompleted ? "line-through" : "none";
+                    // No need to call getData() here if you don't want to reload all items,
+                    // but if you want to ensure all data is fresh, you can uncomment the next line.
+                    // getData();
                 })
-        })
+                .catch(err => console.log(err));
+        });
+
 
 
 
@@ -101,8 +107,10 @@ todoForm.addEventListener("submit", function (event) {
         // completed: todoForm.checkbox.value
     };
 
-    axios
-        .post("https://api.vschool.io/belita/todo", newTodo)
-        .then((response) => getData())
+    axios.post("https://api.vschool.io/belita/todo", newTodo)
+        .then((response) => {
+            getData(); // Refresh the list
+            todoForm.reset(); // Clear the form
+        })
         .catch((error) => console.log(error));
-})
+});
