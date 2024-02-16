@@ -8,46 +8,50 @@ function getData() {
 function listData(data) {
     clearList()
     for (let i = 0; i < data.length; i++) {
-        const h1 = document.createElement('h1')
-        h1.textContent = data[i].title
-        document.getElementById('todo-list').appendChild(h1)
-        const h2 = document.createElement('h2')
-        h2.textContent = data[i].price
-        document.getElementById('todo-list').appendChild(h2)
-        const h3 = document.createElement('h3')
-        h3.textContent = data[i].description
-        document.getElementById('todo-list').appendChild(h3)
-        // maybe putting an if statement for image if image url is entered?
+        const itemContainer = document.createElement('div');
+        itemContainer.style.background = "#fff"; // Set the background to white
+        itemContainer.style.padding = "10px"; // Add some padding
+        itemContainer.style.marginBottom = "10px"; // Add margin at the bottom
+        itemContainer.style.marginTop = "10px"; // Add margin at the bottom
+        itemContainer.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)"; // Optional: Add a subtle shadow
+        itemContainer.style.borderRadius = "5px"; // Optional: Round the corners
+
+        const h1 = document.createElement('h1');
+        h1.textContent = data[i].title;
+        itemContainer.appendChild(h1);
+
+        const h2 = document.createElement('h2');
+        h2.textContent = data[i].price;
+        itemContainer.appendChild(h2);
+
+        const h3 = document.createElement('h3');
+        h3.textContent = data[i].description;
+        itemContainer.appendChild(h3);
+
         const image = document.createElement('img');
-        image.src = data[i].imgUrl
-        image.style.width = "300px"
-        image.style.height = "300px"
-        document.getElementById('todo-list').appendChild(image)
-        const checkbox = document.createElement("input")
-        checkbox.type = "checkbox"
-        checkbox.id = data[i]._id
-        // checkbox.check = data[i].completed
-        document.getElementById('todo-list').appendChild(checkbox)
-        const deleteButton = document.createElement("button")
-        deleteButton.textContent = "x"
-        document.getElementById('todo-list').appendChild(deleteButton)
+        image.src = data[i].imgUrl;
+        image.style.width = "100%"; // Make image responsive
+        image.style.height = "auto";
+        image.style.borderRadius = "5px"; // Optional: Round the corners of the image
+        itemContainer.appendChild(image);
 
-        checkbox.checked = data[i].completed
-        h1.style.textDecoration = data[i].completed ? "line-through" : "none"
-        // checkbox.addEventListener('click', e => {
-        //     if (checkbox.checked) {
-        //         h1.style.textDecoration = "line-through"
-        //         axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: true })
-        //             .then(res => getData())
-        //             .catch(err => console.log(err))
+        const checkboxContainer = document.createElement("div");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = data[i]._id;
+        const label = document.createElement("label");
+        label.htmlFor = data[i]._id;
+        label.textContent = " Completed";
+        checkboxContainer.appendChild(checkbox);
+        checkboxContainer.appendChild(label);
+        itemContainer.appendChild(checkboxContainer);
 
-        //     } else {
-        //         h1.style.textDecoration = "none"
-        //         axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: false })
-        //             .then(res => getData())
-        //             .catch(err => console.log(err))
-        //     }
-        // })
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "x";
+        itemContainer.appendChild(deleteButton);
+
+        document.getElementById('todo-list').appendChild(itemContainer);
+
 
 
         checkbox.addEventListener('change', e => {
@@ -96,34 +100,9 @@ todoForm.addEventListener("submit", function (event) {
         imgUrl: todoForm.imgUrl.value,
         // completed: todoForm.checkbox.value
     };
+
     axios
         .post("https://api.vschool.io/belita/todo", newTodo)
         .then((response) => getData())
         .catch((error) => console.log(error));
 })
-// Part 3 - PUT
-
-// checkbox.addEventListener('click', e => {
-//     if (checkbox.checked) {
-//         h1.style.textDecoration = "line-through"
-//         axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: true })
-//             .then(res => getData())
-//             .catch(err => console.log(err))
-//     } else {
-//         h1.style.textDecoration = "none"
-//         axios.put(`https://api.vschool.io/belita/todo/${data[i]._id}`, { completed: false })
-//             .then(res => getData())
-//             .catch(err => console.log(err))
-//     }
-// })
-
-// Part 4 - DELETE
-// function deleteButton(event) {
-// deleteButton.addEventListener("click", e => {
-//     axios.delete("https://api.vschool.io/belita/todo/" + res.data[i].id)
-//         .then(response => {
-//             getData()
-//         }
-//         )
-// })
-// }

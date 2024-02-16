@@ -118,3 +118,55 @@ const deleteButton = e => {
             }
             ))
 }
+
+
+// LISTS In THE BROWSER
+function listData(data) {
+    clearList()
+    for (let i = 0; i < data.length; i++) {
+        const itemContainer = document.createElement('div');
+        itemContainer.style.background = "#fff"; // Set the background to white
+        itemContainer.style.padding = "10px"; // Add some padding
+        itemContainer.style.marginBottom = "10px"; // Add margin at the bottom
+        itemContainer.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)"; // Optional: Add a subtle shadow
+        itemContainer.style.borderRadius = "5px"; // Optional: Round the corners
+
+        const h1 = document.createElement('h1')
+        h1.textContent = data[i].title
+        document.getElementById('todo-list').appendChild(h1)
+
+        const h2 = document.createElement('h2')
+        h2.textContent = data[i].price
+        document.getElementById('todo-list').appendChild(h2)
+
+        const h3 = document.createElement('h3')
+        h3.textContent = data[i].description
+        document.getElementById('todo-list').appendChild(h3)
+
+        // maybe putting an if statement for image if image url is entered?
+        const image = document.createElement('img');
+        image.src = data[i].imgUrl
+        image.style.width = "300px"
+        image.style.height = "300px"
+        document.getElementById('todo-list').appendChild(image)
+
+        const checkboxContainer = document.createElement("div");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = data[i]._id;
+        const label = document.createElement("label");
+        label.htmlFor = data[i]._id;
+        label.textContent = " Completed"; // Space added for separation
+        checkboxContainer.appendChild(checkbox);
+        checkboxContainer.appendChild(label); // This adds the text "Completed" next to the checkbox
+
+        document.getElementById('todo-list').appendChild(checkboxContainer);
+
+        const deleteButton = document.createElement("button")
+        deleteButton.textContent = "x"
+        document.getElementById('todo-list').appendChild(deleteButton);
+
+        document.getElementById('todo-list').appendChild(itemContainer);
+
+    }
+}
