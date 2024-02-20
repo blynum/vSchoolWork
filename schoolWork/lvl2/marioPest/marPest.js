@@ -29,7 +29,7 @@ form.addEventListener("submit", (event) => {
   form.gooPest.value = "";
   form.bobPest.value = "";
   form.cheePest.value = "";
-  const h1 = document.createElement("h1");
+  const h1 = document.getElementById("total");
   h1.textContent = "Total Price: " + "$" + total;
-  document.getElementsByClassName("totalPrice")[0].append(h1);
+  // document.getElementsByClassName("totalPrice")[0].append(h1);
 });
