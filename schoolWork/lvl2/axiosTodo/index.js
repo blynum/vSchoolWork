@@ -44,8 +44,12 @@ function listData(data) {
 
         if (data[i].completed) {
             h1.style.textDecoration = "line-through";
+            h2.style.textDecoration = "line-through";
+            h3.style.textDecoration = "line-through";
         } else {
             h1.style.textDecoration = "none";
+            h2.style.textDecoration = "none";
+            h3.style.textDecoration = "none";
         }
 
         const label = document.createElement("label");
