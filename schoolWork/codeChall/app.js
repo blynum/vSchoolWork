@@ -25,9 +25,9 @@
 
 // Coding challenge for today: Create a function that will return a Boolean specifying if a number is prime…
 
-function isPrime(n) {
-  if(n % n === 0)
-  console.log("is a prime")
+/* function isPrime(n) {
+  if (n % n === 0)
+    console.log("is a prime")
   return true;
 }
 
@@ -36,3 +36,22 @@ console.log(3, " is prime? ", isPrime(3));
 console.log(4, " is prime? ", isPrime(4));
 console.log(5, " is prime? ", isPrime(5));
 console.log(9, " is prime? ", isPrime(9));
+
+
+//Lvl 2 Code 
+const arr1 = [1, 3, 5]
+const arr2 = [2, 4, 6]
+const arr3 = []
+
+
+arr3.push(...arr1, ...arr2)
+
+console.log(arr3) */
+const axios = require("axios")
+function getData() {
+  axios.get("https://swapi.dev/api/people/1/")
+    .then(res => console.log(res.data.name))
+    .catch(err => console.log(err))
+}
+
+getData()

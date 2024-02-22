@@ -13,8 +13,8 @@ function listData(data) {
         itemContainer.style.padding = "10px"; // Add some padding
         itemContainer.style.marginBottom = "10px"; // Add margin at the bottom
         itemContainer.style.marginTop = "10px"; // Add margin at the bottom
-        itemContainer.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)"; // Optional: Add a subtle shadow
-        itemContainer.style.borderRadius = "5px"; // Optional: Round the corners
+        itemContainer.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)"; // Add a subtle shadow
+        itemContainer.style.borderRadius = "5px"; // Round the corners
 
         const h1 = document.createElement('h1');
         h1.textContent = data[i].title;
@@ -32,9 +32,14 @@ function listData(data) {
         image.src = data[i].imgUrl;
         image.style.width = "100%"; // Make image responsive
         image.style.height = "auto";
-        image.style.borderRadius = "5px"; // Optional: Round the corners of the image
+        image.style.borderRadius = "5px"; // Round the corners of the image
         itemContainer.appendChild(image);
 
+        const actionsContainer = document.createElement("div");
+        actionsContainer.style.display = "flex"; // Use flexbox to align items in a row
+        actionsContainer.style.alignItems = "center"; // Center items vertically
+        actionsContainer.style.justifyContent = "space-around"; // Space out items
+        actionsContainer.style.padding = "10px 0"; // Add padding for spacing
 
         const checkboxContainer = document.createElement("div");
         const checkbox = document.createElement("input");
@@ -52,20 +57,29 @@ function listData(data) {
             h3.style.textDecoration = "none";
         }
 
+        console.log(data[i])
+
         const label = document.createElement("label");
         label.htmlFor = data[i]._id;
         label.textContent = " Completed";
         checkboxContainer.appendChild(checkbox);
         checkboxContainer.appendChild(label);
-        itemContainer.appendChild(checkboxContainer);
+        //itemContainer.appendChild(checkboxContainer);
 
         const deleteButton = document.createElement("button");
+        deleteButton.className = "delete-button";
         deleteButton.textContent = "x";
-        itemContainer.appendChild(deleteButton);
+        //itemContainer.appendChild(deleteButton);
+        deleteButton.style.marginLeft = "10px";
+
+        // Append both checkbox and delete button to actionsContainer
+        actionsContainer.appendChild(checkboxContainer);
+        actionsContainer.appendChild(deleteButton);
+
+        // Append actionsContainer to the itemContainer
+        itemContainer.appendChild(actionsContainer);
 
         document.getElementById('todo-list').appendChild(itemContainer);
-
-
 
         checkbox.addEventListener('change', e => {
             const isCompleted = checkbox.checked;
@@ -91,6 +105,8 @@ function listData(data) {
         })
     }
     // check()
+
+
 }
 function clearList() {
     const el = document.getElementById('todo-list')
