@@ -40,11 +40,35 @@ section {
   font-size: larger;
 }
 
+.cards-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.card {
+  width: 175px;
+  font-size: 12px;
+  flex: 0 0 auto;         /* ADD */
+  display: flex;          /* ADD */
+  flex-direction: column; /* ADD */
+}
+
 .card--info {
   display: flex;
-  flex-direction: row;
+  flex-direction: center;
 }
 
 .card--star {
   height: 14px;
+}
+
+.card--title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card--price {
+  margin-top: auto;
 }

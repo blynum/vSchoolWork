@@ -1,15 +1,15 @@
-function Card() {
+function Card(props) {
   return (
     <section className="card">
-      <img src="src/assets/image 12.png" className="card--photo" />
+      <img src={`/${props.img}`} className="card--photo" />
       <div className="card--info">
-        <img src="src/assets/Star 1.png" className="card--star" />
-        <span> 5.0</span>
-        <span>(6) •</span>
-        <span>USA</span>
+        <img src="/Star 1.png" className="card--star" />
+        <span>{props.rating}</span>
+        <span className="gray">({props.reviewCount}) • </span>
+        <span className="gray">{props.location}</span>
       </div>
-      <p>Life Lessons with Katie Zaferes</p>
-      <p>From $136 / person</p>
+      <p className="card--title">{props.title}</p>
+      <p className="card--price">From ${props.price} / person</p>
     </section>
   );
 }
