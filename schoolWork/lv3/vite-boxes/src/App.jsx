@@ -1,37 +1,48 @@
-import { useState } from 'react'
-import boxes from './boxes'
-import Box from './Box'
-import './App.css'
+import { useState } from "react";
+import boxes from "./boxes";
+import Box from "./Box";
+import "./App.css";
 
+function App() {
+  const [squares, setSquares] = useState(boxes);
 
-
-  function App() {
-    const [squares, setSquares] = useState(boxes)
-    // const style = {
-    //   backgroundColor: props.darkMode ? "#222222" : "#cccccc"
-    // }
-    const squareArray = squares.map(square => (
-      <Box key={square.id} on={square.on} />
-    ))
-  
-  
+  function toggle(id) {
     /**
-       * Challenge part 1:
-       * 1. Initialize state with the default value of the
-       *    array pulled in from boxes.js
-       * 2. Map over that state array and display each one
-       *    as an empty square (black border, transparent bg color)
-       *    (Don't worry about using the "on" property yet)
-       */
-  
-    return (
-      <div className="App">
-        Box Challenge 1
-        {squareArray}
-  
-      </div>
-    );
+     * Challenge: use setSquares to update the
+     * correct square in the array.
+     *
+     * Make sure not to directly modify state!
+     *
+     * Hint: look back at the lesson on updating arrays
+     * in state if you need a reminder on how to do this
+     */
+    setSquares((prevSquares) => {
+      const newSquares = [];
+      for (let i = 0; i < prevSquares.length; i++) {
+        const currentSquare = prevSquares[i];
+        if (currentSquare.id === id) {
+          const updatedSquare = {
+            ...currentSquare,
+            on: !currentSquare.on,
+          };
+          newSquares.push(updatedSquare);
+        } else {
+          newSquares.push(currentSquare);
+        }
+      }
+      return newSquares;
+    });
   }
-  
-  export default App;
-  
+
+  const squareArray = squares.map((square) => (
+    <Box key={square.id} id={square.id} on={square.on} toggle={toggle} />
+  ));
+
+  return (
+    <div className="App">
+      <h1>Box Challenge 1</h1>
+      <div className="box-container">{squareArray}</div>
+    </div>
+  );
+}
+export default App;
