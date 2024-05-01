@@ -3,20 +3,14 @@ import boxes from "./boxes";
 import Box from "./Box";
 import "./App.css";
 
-function App() {
+function App(){
   const [squares, setSquares] = useState(boxes);
 
   function toggle(id) {
-    /**
-     * Challenge: use setSquares to update the
-     * correct square in the array.
-     *
-     * Make sure not to directly modify state!
-     *
-     * Hint: look back at the lesson on updating arrays
-     * in state if you need a reminder on how to do this
-     */
-    setSquares((prevSquares) => {
+
+  //imperative code 
+
+/*     setSquares((prevSquares) => {
       const newSquares = [];
       for (let i = 0; i < prevSquares.length; i++) {
         const currentSquare = prevSquares[i];
@@ -30,12 +24,21 @@ function App() {
           newSquares.push(currentSquare);
         }
       }
-      return newSquares;
-    });
-  }
+      return newSquares; */
+
+      //declarative code
+      setSquares((prevSquares) => {
+        return prevSquares.map((square) => {
+            return square.id === id ? {...square, on: !square.on} : square
+        })
+    })
+}
+  
+
 
   const squareArray = squares.map((square) => (
-    <Box key={square.id} id={square.id} on={square.on} toggle={toggle} />
+    <Box key={square.id} id={square.id} on={square.on} toggle={toggle} 
+    />
   ));
 
   return (
@@ -43,6 +46,8 @@ function App() {
       <h1>Box Challenge 1</h1>
       <div className="box-container">{squareArray}</div>
     </div>
-  );
+  )
 }
+
+
 export default App;

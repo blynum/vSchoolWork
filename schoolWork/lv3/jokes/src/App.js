@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const jokeElement = jokesData.map(joke => {
-    // Component
+    // Joke Component
     return <Joke
       key={joke.index}
       setup={joke.setup} /*properites*/
