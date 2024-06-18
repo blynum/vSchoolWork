@@ -1,23 +1,15 @@
-import React from "react"
+import React from 'react';
 
-// The functional components can accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+const Color = ({ color }) => {
+    const style = {
+        backgroundColor: color,
+        width: '200px',
+        height: '200px',
+        margin: '20px',
+        cursor: 'pointer',
+    };
 
-function Color(props) {
-    // if (!props.colors.length) return null
-    return (
-        <div className="container">
-            {props.colors.map((color, i) => (
-                <div
-                    key={i}
-                    className="color"
-                    style={{ background: color }}
-                >
-                </div>
+    return <div className="color" style={style}></div>;
+};
 
-            ))}
-
-        </div>
-    )
-}
-
-export default Color
+export default Color;

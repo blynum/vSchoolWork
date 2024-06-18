@@ -1,5 +1,5 @@
 
-var readline = require('readline-sync');
+/** var readline = require('readline-sync');
 var input = readline.question('What phrase would you like to encrypt? ').toLowerCase();
 console.log(input)
 var shift = parseInt(readline.question('How many letters would you like to shift? '))
@@ -35,4 +35,40 @@ const cipher = (input, shift) => {
     // Returns the ciphered phrase
     return hiddenText
 }
-console.log(cipher(input, shift)) 
+console.log(cipher(input, shift)) **/
+const cipher = (input, shift) => {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const inputText = input.toLowerCase(); // Convert input to lowercase
+
+    let encryptedText = '';
+
+    for (let i = 0; i < inputText.length; i++) {
+        let char = inputText[i];
+
+        if (char === ' ') {
+            encryptedText += ' ';
+            continue;
+        }
+
+        let currentIndex = alphabet.indexOf(char);
+        if (currentIndex !== -1) { // If character is in alphabet
+            let newIndex = (currentIndex + shift) % 26; // Calculate new index with wrap-around
+            if (newIndex < 0) {
+                newIndex += 26; // Ensure positive index
+            }
+            encryptedText += alphabet[newIndex]; // Append encrypted character
+        } else {
+            // If character is not in alphabet (e.g., punctuation), keep it unchanged
+            encryptedText += char;
+        }
+    }
+
+    return encryptedText;
+};
+
+// Example usage:
+var readline = require('readline-sync');
+var input = readline.question('What phrase would you like to encrypt? ');
+var shift = parseInt(readline.question('How many letters would you like to shift? '));
+
+console.log(cipher(input, shift));
