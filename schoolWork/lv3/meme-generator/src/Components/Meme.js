@@ -1,23 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 // import memesData from "../memeData"
 
-function Meme() {
-    /**
-        * Challenge: 
-        * As soon as the Meme component loads the first time,
-        * make an API call to "https://api.imgflip.com/get_memes".
-        * 
-        * When the data comes in, save just the memes array part
-        * of that data to the `allMemes` state
-        * 
-        * Think about if there are any dependencies that, if they
-        * changed, you'd want to cause to re-run this function.
-        * 
-        * Hint: for now, don't try to use an async/await function.
-        * Instead, use `.then()` blocks to resolve the promises
-        * from using `fetch`. We'll learn why after this challenge.
-        */
-
+function Meme({ addMeme, editingMeme }) {
 
     const [meme, setMeme] = React.useState({
         topText: "",
@@ -27,6 +11,7 @@ function Meme() {
 
     // const [allMemeImages, setAllMemeImages] = React.useState(memesData)
     const [allMemeImages, setAllMemeImages] = React.useState([])
+    const isFirstRender = useRef(true);
 
     /**
 useEffect takes a function as its parameter. If that function
@@ -40,7 +25,17 @@ it should return nothing.
             .then(data => setAllMemeImages(data.data.memes))
     }, [])
 
-    console.log(allMemeImages)
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        if (editingMeme) {
+            setMeme(editingMeme);
+        }
+    }, [editingMeme]);
+
+    /* console.log(allMemeImages) */
 
 
     function getMemeImage() {
@@ -66,6 +61,15 @@ it should return nothing.
         }))
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (meme.randomImage) {
+            addMeme(meme);
+            setMeme({ topText: "", bottomText: "", randomImage: "" });
+        } else {
+            alert("Please generate a meme image first!");
+        }
+    };
 
 
 
@@ -88,21 +92,20 @@ it should return nothing.
                     value={meme.bottonText}
                     onChange={handleChange} />
 
-                <button
-                    onClick={getMemeImage}
-                    className="form--button">
+                <button onClick={getMemeImage} className="form--button">
                     Get a new meme image 🖼
                 </button>
+                <button onClick={handleSubmit} className="form--button">
+                    {editingMeme ? "Update Meme" : "Add Meme"}
+                </button>
             </div>
-
-            <div className="meme">
-                <img src={meme.randomImage} className="meme--image" />
-                <h2 className="meme--text top">{meme.topText}</h2>
-                <h2 className="meme--text bottom">{meme.bottomText}</h2>
-            </div>
-
-
-
+            {meme.randomImage && (
+                <div className="meme">
+                    <img src={meme.randomImage} className="meme--image" alt="Meme" />
+                    <h2 className="meme--text top">{meme.topText}</h2>
+                    <h2 className="meme--text bottom">{meme.bottomText}</h2>
+                </div>
+            )}
         </main>
     )
 }

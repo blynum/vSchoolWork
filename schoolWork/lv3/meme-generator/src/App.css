@@ -24,12 +24,13 @@ header {
   padding: 45px;
   box-shadow: 0px 4px 4px 0px #00000040;
 }
+
+/* Header Styling */
 .header--pic {
   height: 50px;
-  /* padding-top: 20px;
-  padding-left: 20px; */
   margin-right: 6px;
 }
+
 .header--title {
   font-family: "Karla", sans-serif;
   font-weight: 900;
@@ -46,6 +47,7 @@ header {
   font-size: 20px;
 }
 
+/* Form Styling */
 .form {
   display: grid;
   grid-template: 40px 40px / 1fr 1fr;
@@ -72,6 +74,7 @@ header {
   text-indent: 5px;
 }
 
+/* Meme Styling */
 .meme {
   position: relative;
   margin-top: 25px;
@@ -106,4 +109,33 @@ header {
 
 .bottom {
   bottom: 0;
+}
+
+/* Meme list styling */
+.meme-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.meme-item {
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  width: 300px;
+  position: relative;
+}
+.meme-item img {
+  max-width: 100%;
+}
+.meme-item button {
+  margin-top: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+.meme-item button:hover {
+  background-color: darkred;
 }
